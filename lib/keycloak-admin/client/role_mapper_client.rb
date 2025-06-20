@@ -22,12 +22,12 @@ module KeycloakAdmin
 
     def remove_realm_level(role_representation_list)
       execute_http do
-        RestClient::Request.execute(
+        RestClient::Request.execute(**@configuration.rest_client_options.merge({
           method: :delete, 
           url: realm_level_url, 
           payload: create_payload(role_representation_list), 
           headers: headers
-        )
+        }))
       end
     end
   
